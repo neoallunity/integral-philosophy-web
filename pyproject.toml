@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "integral-philosophy-web"
+version = "2.0.0"
+description = "Web interface and API for academic publishing system"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Philosophy Publishing Team", email = "team@integral-philosophy.org"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Framework :: FastAPI",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "jinja2>=3.1.0",
+    "python-multipart>=0.0.6",
+    "pydantic>=2.5.0",
+    "python-jose[cryptography]>=3.3.0",
+    "websockets>=11.0.0",
+]
+
+[project.optional-dependencies]
+ui = [
+    "aiofiles>=23.1.0",
+]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.7.0",
+    "httpx>=0.24.0",
+]
+all = [
+    "integral-philosophy-web[ui,dev]",
+]
+
+[project.urls]
+Homepage = "https://github.com/dominicusin/integral-philosophy-web"
+Documentation = "https://integral-philosophy-web.readthedocs.io"
+Repository = "https://github.com/dominicusin/integral-philosophy-web.git"
+Issues = "https://github.com/dominicusin/integral-philosophy-web/issues"
+
+[project.scripts]
+integral-web = "integral_philosophy_web.cli:main"
+integral-api = "integral_philosophy_web.api:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
